@@ -43,7 +43,33 @@ Retorno:
 
 describe('9 - Implemente os casos de teste da função `getCharacter`', () => {
   it('Verifica se a função `getCharacter` retorna o objeto do personagem corretamente.', () => {
-    fail('Teste vazio!');
+    expect(getCharacter()).toBeUndefined();
+    const Arya = {
+      name: 'Arya Stark',
+      class: 'Rogue',
+      phrases: [ 'Not today', 'A girl has no name.' ]
+    };
+    expect(getCharacter('Arya')).toEqual(Arya);
+    const Brienne = {
+      name: 'Brienne Tarth',
+      class: 'Knight',
+      phrases: [
+        'Im No Lady, Your Grace.',
+        'I, Brienne Of Tarth, Sentence You To Die.'
+      ]
+    };
+    expect(getCharacter('Brienne')).toEqual(Brienne);
+    const Melissandre = {
+      name: 'Melissandre',
+      class: 'Necromancer',
+      phrases: [
+        'Death By Fire Is The Purest Death.',
+        'For The Night Is Dark And Full Of Terrors.'
+      ]
+    };
+    expect(getCharacter('Melissandre')).toEqual(Melissandre);
+    expect(getCharacter('melIsSanDrE')).toEqual(Melissandre);
+    expect(getCharacter('Bruenna')).toBeUndefined();
     // ESCREVA SEUS TESTES ABAIXO:
     // Teste se a função, quando não recebe nenhum parâmetro, retorna undefined.
     // Teste se a função retorna o objeto correto para o parâmetro 'Arya',
