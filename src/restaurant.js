@@ -78,7 +78,56 @@
 // PASSO 4: adicione ao objeto retornado por `createMenu()` uma chave `pay` com uma função
 // que percorre por todos os itens de `objetoRetornado.consumption`, soma o preço deles e retorna o valor somado acrescido de 10%.
 // DICA: para isso, você precisará percorrer tanto o objeto da chave `food` quanto o objeto da chave `drink`.
+/* const objetoQualquer = { food: {'coxinha': 3.9, 'sopa': 9.9}, drink: {'agua': 3.9, 'cerveja': 6.9} }; */
+let objeto = { food: { coxinha: 3.9, sopa: 9.9 }, drink: { agua: 3.9, cerveja: 6.9 } };
+let restaurante = {};
+const adicionaAoArray = (string) => {
+  restaurante.consumption.push(string);
+};
+let foods = Object.keys(objeto.food);
+const foodsvalue = Object.values(objeto.food);
+let drinks = Object.keys(objeto.drink);
+const drinksvalue = Object.values(objeto.drink);
+const somaDosPreçosDosPedidos = () => {
+  let soma = 0;
+   restaurante.consumption.forEach((array) => {
+    for (let i2 = 0; i2 < foods.length; i2 += 1) {
+      if (array === foods[i2]) {
+        soma += foodsvalue[i2];
+      }
+    }
+   });
+   return soma;
+};
 
-const createMenu = () => {};
+const somaDosPreçosDosPedidos2 = () => {
+  let soma = 0;
+   restaurante.consumption.forEach((array2) => {
+    for (let i2 = 0; i2 < drinks.length; i2 += 1) {
+      if (array2 === drinks[i2]) {
+        soma += drinksvalue[i2];
+      }
+    }
+   });
+   return soma;
+};
+const somaTotal = () => {
+  const soma1 = somaDosPreçosDosPedidos() + somaDosPreçosDosPedidos2();
+  return soma1 * 0.10 + soma1;
+};
 
+const createMenu = (objeto1) => {
+  restaurante = {
+    fetchMenu: () => objeto1,
+    order: adicionaAoArray,
+    consumption: [],
+    pay: somaTotal,
+  };
+  return restaurante;
+};
+
+createMenu(objeto);
+restaurante.order('coxinha');
+restaurante.order('sopa');
+restaurante.order('agua');
 module.exports = createMenu;
